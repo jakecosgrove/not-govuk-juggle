@@ -78,23 +78,36 @@ async function fetchGuides() {
  * Extract guide sections from included entries
  */
 function extractGuideSections(data, guide) {
+    console.log('extractGuideSections called');
+    console.log('guide.fields.guideSections:', guide.fields.guideSections);
+    console.log('data.includes:', data.includes);
+    
     if (!guide.fields.guideSections || !data.includes?.Entry) {
+        console.log('Missing guideSections or includes.Entry');
         return [];
     }
 
     const sections = guide.fields.guideSections
         .map(sectionRef => {
             const sectionId = sectionRef.sys.id;
-            return data.includes.Entry.find(entry => entry.sys.id === sectionId);
+            console.log('Looking for section with ID:', sectionId);
+            const found = data.includes.Entry.find(entry => entry.sys.id === sectionId);
+            console.log('Found section:', found);
+            return found;
         })
         .filter(section => section && section.fields);
     
+    console.log('Filtered sections:', sections);
+    
     // Sort by order field
-    return sections.sort((a, b) => {
+    const sorted = sections.sort((a, b) => {
         const orderA = a.fields.order || 0;
         const orderB = b.fields.order || 0;
         return orderA - orderB;
     });
+    
+    console.log('Sorted sections:', sorted);
+    return sorted;
 }
 
 /**
