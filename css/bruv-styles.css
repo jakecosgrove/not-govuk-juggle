@@ -4,11 +4,18 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
     font-family: "GDS Transport", arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     background-color: #ffffff;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
@@ -459,7 +466,8 @@ body {
     background-color: #f3f2f1;
     border-top: 1px solid #b1b4b6;
     padding: 40px 0 20px 0;
-    margin-top: 80px;
+    margin-top: 0;
+    flex-shrink: 0;
 }
 
 .bruv-footer__meta {
@@ -522,6 +530,11 @@ body {
 /* Main Wrapper */
 .bruv-main-wrapper {
     padding: 40px 0;
+}
+
+/* Main content area - grows to fill space */
+main {
+    flex: 1 0 auto;
 }
 
 /* Section Break */
