@@ -84,8 +84,10 @@ function renderLandingPage(landingPage, features) {
     
     // Features section
     if (features.length > 0) {
+        html += '<div class="bruv-feature-section">';
+        
         if (fields.featureSectionHeading) {
-            html += `<h2 class="bruv-heading-l">${escapeHtml(fields.featureSectionHeading)}</h2>`;
+            html += `<h2 class="bruv-heading-l bruv-feature-section__heading">${escapeHtml(fields.featureSectionHeading)}</h2>`;
         }
         
         html += '<div class="bruv-feature-grid">';
@@ -107,7 +109,7 @@ function renderLandingPage(landingPage, features) {
             `;
         });
         
-        html += '</div>';
+        html += '</div></div>';
     }
     
     html += `
