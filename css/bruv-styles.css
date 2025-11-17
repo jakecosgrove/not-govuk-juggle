@@ -31,7 +31,7 @@ body {
 .bruv-header__logo-link {
     color: #ffffff;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 400;
     display: flex;
     align-items: center;
@@ -68,6 +68,7 @@ body {
 
 .bruv-header__navigation {
     padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .bruv-header__navigation-list {
@@ -85,7 +86,7 @@ body {
 .bruv-header__navigation-item a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 19px;
     padding: 12px 15px;
     display: block;
 }
