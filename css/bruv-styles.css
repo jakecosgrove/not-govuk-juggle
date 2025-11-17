@@ -13,32 +13,45 @@ body {
 
 /* Header */
 .bruv-header {
-    background-color: #0b0c0c;
-    padding: 10px 0;
-    border-bottom: 10px solid #1d70b8;
+    background-color: #1d70b8;
+    color: #ffffff;
 }
 
 .bruv-header__container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 30px;
-    display: flex;
-    align-items: center;
 }
 
 .bruv-header__logo {
-    margin-right: 20px;
+    padding: 10px 0 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .bruv-header__logo-link {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 30px;
+    font-size: 24px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .bruv-header__logo-link:hover {
     text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+}
+
+.bruv-header__crown {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 32px;
+    background-color: #ffffff;
+    font-size: 20px;
 }
 
 .bruv-header__service-name {
@@ -54,7 +67,7 @@ body {
 }
 
 .bruv-header__navigation {
-    margin-left: auto;
+    padding: 0;
 }
 
 .bruv-header__navigation-list {
@@ -62,23 +75,29 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 30px;
+    gap: 0;
+}
+
+.bruv-header__navigation-item {
+    margin: 0;
 }
 
 .bruv-header__navigation-item a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-size: 16px;
-    font-weight: 600;
+    padding: 12px 15px;
+    display: block;
 }
 
 .bruv-header__navigation-item a:hover {
     text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
 }
 
 .bruv-header__navigation-item--active a {
-    border-bottom: 3px solid white;
-    padding-bottom: 3px;
+    border-bottom: 4px solid #ffffff;
 }
 
 /* Width Container */
@@ -557,18 +576,28 @@ code {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .bruv-header__container {
-        flex-wrap: wrap;
+    .bruv-header__logo {
+        padding: 8px 0 5px 0;
     }
     
-    .bruv-header__navigation {
-        margin-left: 0;
-        width: 100%;
-        margin-top: 15px;
+    .bruv-header__logo-link {
+        font-size: 20px;
+    }
+    
+    .bruv-header__crown {
+        width: 30px;
+        height: 26px;
+        font-size: 16px;
     }
     
     .bruv-header__navigation-list {
-        gap: 15px;
+        flex-wrap: wrap;
+        gap: 0;
+    }
+    
+    .bruv-header__navigation-item a {
+        padding: 10px 12px;
+        font-size: 14px;
     }
     
     .bruv-hero__heading {
