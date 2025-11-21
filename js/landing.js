@@ -36,8 +36,10 @@ async function fetchLandingPage() {
             console.log('Landing page found:', data.items[0]);
             const landingPage = data.items[0];
             const features = extractFeatures(data, landingPage);
+            const featuredGuide = extractFeaturedGuide(data, landingPage);
             console.log('Features extracted:', features.length);
-            renderLandingPage(landingPage, features);
+            console.log('Featured guide:', featuredGuide);
+            renderLandingPage(landingPage, features, featuredGuide);
         } else {
             showError('No landing page found. Please create a Landing Page entry in Contentful with content type "landingPage".');
         }
@@ -64,9 +66,36 @@ function extractFeatures(data, landingPage) {
 }
 
 /**
+ * Extract featured guide from included entries
+ */
+function extractFeaturedGuide(data, landingPage) {
+    if (!landingPage.fields.featuredGuide || !data.includes?.Entry) {
+        return null;
+    }
+
+    const guideId = landingPage.fields.featuredGuide.sys.id;
+    const guide = data.includes.Entry.find(entry => entry.sys.id === guideId);
+    
+    if (!guide || !guide.fields) {
+        return null;
+    }
+
+    // Get the guide's image if it exists
+    if (guide.fields.image && data.includes?.Asset) {
+        const imageId = guide.fields.image.sys.id;
+        const imageAsset = data.includes.Asset.find(asset => asset.sys.id === imageId);
+        if (imageAsset) {
+            guide.imageAsset = imageAsset;
+        }
+    }
+
+    return guide;
+}
+
+/**
  * Render the landing page
  */
-function renderLandingPage(landingPage, features) {
+function renderLandingPage(landingPage, features, featuredGuide) {
     const fields = landingPage.fields;
     
     let html = `
@@ -112,12 +141,69 @@ function renderLandingPage(landingPage, features) {
         html += '</div></div>';
     }
     
+    // Featured guide section
+    if (featuredGuide) {
+        html += renderFeaturedGuide(fields, featuredGuide);
+    }
+    
     html += `
             </div>
         </div>
     `;
     
     contentDiv.innerHTML = html;
+}
+
+/**
+ * Render featured guide section
+ */
+function renderFeaturedGuide(landingPageFields, guide) {
+    const guideFields = guide.fields;
+    const heading = landingPageFields.featuredGuideSectionHeading || 'Featured guide';
+    const guideUrl = `guides.html?slug=${guideFields.slug}`;
+    
+    let html = `
+        <div class="bruv-featured-guide-section">
+            <h2 class="bruv-featured-guide-section__heading">${escapeHtml(heading)}</h2>
+            
+            <div class="bruv-guide-card">
+                <div class="bruv-guide-card__image">
+                    ${renderGuideImage(guide)}
+                </div>
+                <div class="bruv-guide-card__content">
+                    <p class="bruv-guide-card__label">Guide</p>
+                    <h3 class="bruv-guide-card__title">
+                        <a href="${escapeHtml(guideUrl)}" class="bruv-guide-card__title-link">
+                            ${escapeHtml(guideFields.title)}
+                        </a>
+                    </h3>
+                    ${guideFields.summary ? `<p class="bruv-guide-card__description">${escapeHtml(guideFields.summary)}</p>` : ''}
+                </div>
+            </div>
+            
+            <a href="guides.html" class="bruv-view-all-link">View all guides</a>
+        </div>
+    `;
+    
+    return html;
+}
+
+/**
+ * Render guide image or placeholder
+ */
+function renderGuideImage(guide) {
+    if (guide.imageAsset && guide.imageAsset.fields) {
+        const imageUrl = guide.imageAsset.fields.file.url;
+        const imageAlt = guide.imageAsset.fields.title || guide.fields.title;
+        return `<img src="https:${imageUrl}" alt="${escapeHtml(imageAlt)}">`;
+    }
+    
+    // Placeholder if no image
+    return `
+        <div style="width: 100%; aspect-ratio: 4/3; background-color: #b1b4b6; display: flex; align-items: center; justify-content: center;">
+            <span style="color: #505a5f; font-size: 16px;">Image placeholder</span>
+        </div>
+    `;
 }
 
 /**
