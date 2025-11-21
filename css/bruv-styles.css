@@ -379,7 +379,7 @@ body {
 .bruv-feature-card__image-wrapper {
     width: 100%;
     aspect-ratio: 4 / 3;
-    background-color: #b1b4b6;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -388,7 +388,7 @@ body {
 .bruv-feature-card__image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* Image-right layout (default) */
