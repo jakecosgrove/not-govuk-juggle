@@ -255,6 +255,96 @@ body {
     margin: 0 0 40px 0;
 }
 
+/* Featured Guide Section */
+.bruv-featured-guide-section {
+    margin: 60px 0 0 0;
+}
+
+.bruv-featured-guide-section__heading {
+    font-size: 36px;
+    line-height: 1.11111;
+    font-weight: bold;
+    margin: 0 0 30px 0;
+    color: #0b0c0c;
+}
+
+.bruv-guide-card {
+    background-color: #f3f2f1;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+.bruv-guide-card__image {
+    width: 100%;
+}
+
+.bruv-guide-card__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.bruv-guide-card__content {
+    padding: 10px 0;
+}
+
+.bruv-guide-card__label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #505a5f;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bruv-guide-card__title {
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+.bruv-guide-card__title-link {
+    color: #1d70b8;
+    text-decoration: underline;
+}
+
+.bruv-guide-card__title-link:hover {
+    color: #003078;
+    text-decoration-thickness: 3px;
+}
+
+.bruv-guide-card__title-link:visited {
+    color: #4c2c92;
+}
+
+.bruv-guide-card__description {
+    font-size: 19px;
+    line-height: 1.47368;
+    margin: 0;
+    color: #0b0c0c;
+}
+
+.bruv-view-all-link {
+    font-size: 19px;
+    color: #1d70b8;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.bruv-view-all-link:hover {
+    color: #003078;
+    text-decoration-thickness: 3px;
+}
+
+.bruv-view-all-link:visited {
+    color: #4c2c92;
+}
+
 .bruv-feature-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -322,6 +412,16 @@ body {
     .bruv-feature-card {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
+    
+    .bruv-guide-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .bruv-guide-card__title {
+        font-size: 24px;
     }
     
     .bruv-feature-card__content,
