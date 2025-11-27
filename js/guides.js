@@ -133,7 +133,7 @@ function renderGuidesList(guides) {
         </div>
         
         <h1 class="bruv-heading-xl">Guides</h1>
-        <p class="bruv-body-l">Step-by-step guides to help you use BRUV.UK Juggle.</p>
+        <p class="bruv-body-l">Step-by-step guides to help you use NOT GOV.UK Juggle.</p>
         
         <hr class="bruv-section-break bruv-section-break--visible bruv-section-break--xl">
     `;
