@@ -1,4 +1,4 @@
-// BRUV.UK Juggle - Guides Page
+// NOT GOV.UK Juggle - Guides Page
 const SPACE_ID = '580251rmw49s';
 const DELIVERY_TOKEN = 'uy1OK3vdmQXP2YHWiQySRP2MDN04fbCiPR8WLB3g-7U';
 
